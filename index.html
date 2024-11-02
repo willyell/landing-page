@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>[TODO_SERVICE_NAME]</title>
+    <link rel="icon" type="image/png" href="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <meta name="description" content="[TODO_SERVICE_DESCRIPTION]">
+    
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="[TODO_SERVICE_TITLE]">
+    <meta property="og:description" content="[TODO_SERVICE_DESCRIPTION]">
+    <meta property="og:image" content="[TODO_SERVICE_IMAGE]">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="[TODO_SERVICE_DOMAIN]">
+    <meta property="twitter:url" content="[TODO_SERVICE_URL]">
+    <meta name="twitter:title" content="[TODO_SERVICE_TITLE]">
+    <meta name="twitter:description" content="[TODO_SERVICE_DESCRIPTION]">
+    <meta name="twitter:image" content="[TODO_SERVICE_IMAGE]">
+    
+    <link rel="stylesheet" href="./landing.css">
+</head>
+<body>
+    <!-- Do Not change this input -->
+    <input type="hidden" value="20221206" name="cptpl_template" class="test cptpl_template" />
+    
+    <div id="page" class="cptpl_page">
+        <div id="header-image">
+            <!-- Placeholder image, replaced by JSON data if available -->
+            <img src="https://via.placeholder.com/450x180.png/09f/fff?text=Header+Image" alt="Header Image" class="cptpl_logo cptpl_logo_static" crossorigin="anonymous" />
+        </div>
+        
+        <div id="wording">
+            <span class="text cptpl_service">Get [TODO_SERVICE_AND_PROMO]</span>
+            <span class="text">
+                <span class="cptpl_price">[TODO_PRICE_PER_DAY]</span>
+                <span class="cptpl_account">On Your Vodacom Account</span>
+            </span>
+        </div>
+        
+        <div id="mentions">
+            <span class="text charge cptpl_bill">Pay with Vodacom Add to Bill</span>
+            <span class="text links clearfix">
+                <a href="[TODO_LINK_TERMS_AND_CONDITIONS]" class="terms cptpl_terms">Terms &amp; Conditions</a>
+            </span>
+        </div>
+        
+        <div id="actions">
+            <noscript>
+                <h1>Please enable javascript!</h1>
+            </noscript>
+            <form action="" method="post">
+                <!-- WORDING AVAILABLE SUBSCRIBE / ACCEPT -->
+                <button id="subscribe_button" class="cptpl_subscribe">Subscribe</button>
+            </form>
+        </div>
+        
+        <div id="exit">
+            <span class="exit">
+                <button class="exit cptpl_exit">Exit</button>
+            </span>
+        </div>
+    </div>
+
+    <script>
+        // Fetch the data from the JSON file and update the page dynamically
+        fetch('./data.json')
+            .then(response => response.json())
+            .then(data => {
+                // Update text content
+                document.title = data.serviceName;
+                document.querySelector('.cptpl_service').textContent = data.servicePromo;
+                document.querySelector('.cptpl_price').textContent = data.pricePerDay;
+                document.querySelector('.cptpl_terms').href = data.termsLink;
+                
+                // Update images
+                const headerImage = document.getElementById('header-image').querySelector('img');
+                headerImage.src = data.headerImage;
+
+                // Update button color
+                document.getElementById('subscribe_button').style.backgroundColor = data.buttonColor;
+
+                // Set Subscribe button link
+                const subscribeForm = document.querySelector('form');
+                subscribeForm.action = data.subscribeURL;
+
+                // Set Exit button link
+                const exitButton = document.querySelector('.cptpl_exit');
+                exitButton.onclick = () => location.href = data.exitURL;
+
+                // Optional: Log URLs to confirm they’re being set
+                console.log('Subscribe URL:', subscribeForm.action);
+                console.log('Exit URL:', exitButton.onclick);
+            })
+            .catch(error => console.error('Error fetching JSON data:', error));
+    </script>
+</body>
+</html>
+

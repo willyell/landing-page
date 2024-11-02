@@ -1,0 +1,161 @@
+html, body, div, span, h1, p, form, tbody, tfoot, thead, tr, th, td, footer, header, button {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+footer, header {
+    display: block;
+}
+
+h1 {
+    font-size: 100%;
+}
+
+a, u, ins {
+    text-decoration: none;
+}
+
+input, select, textarea {
+    font: inherit;
+}
+
+html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: none;
+}
+
+body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    text-align: center;
+    color: #fff;
+    font: 14px "Roboto", Arial, Helvetica, sans-serif;
+    line-height: 1.25;
+    font-weight: 400;
+}
+
+a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+img {
+    display: block;
+    line-height: 1;
+    width: 100%;
+}
+
+.text {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    font-size: 1.25em;
+}
+
+.text.charge {
+    height: 1em;
+}
+
+#header-image {
+    max-height: 300px;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#mentions .text {
+    margin-bottom: 0.3em;
+    font-size: 1em;
+}
+
+#header-image, #actions, #wording, #exit {
+    margin-bottom: 1em;
+}
+
+#wording .text {
+    font-size: 1.24em;
+    opacity: 0.7;
+}
+
+#page {
+    width: 100%;
+    min-height: 600px;
+    max-width: 450px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #000000;
+}
+
+#actions {
+    padding: 0;
+    position: relative;
+    z-index: 9;
+}
+
+button {
+    outline: none;
+    position: relative;
+    margin: 0 auto;
+    border: none;
+    width: 90%;
+    background-color: #0000FF;
+    color: #fff;
+    border-radius: 0.25em;
+    padding: 1.25em 0;
+    font: 2em "Roboto", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+button.exit {
+    background: #000;
+    color: grey;
+    border: 3px solid grey;
+}
+
+#subscribe_button {
+    border: 4px solid #fff;
+}
+
+#wording {
+    z-index: 999;
+}
+
+#mentions {
+    padding-bottom: 2em;
+    position: relative;
+    z-index: 999;
+    opacity: 0.7;
+}
+
+#mentions a {
+    margin: 0 1em;
+}
+
+.clearfix:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+span {
+    background-color: inherit;
+}
+
+@media screen and (min-width: 426px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    body {
+        font-size: 12px;
+    }
+}
