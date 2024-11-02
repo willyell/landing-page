@@ -32,7 +32,7 @@ body {
     width: 100%;
     background: #000;
     text-align: center;
-    color: #fff;
+    color: #d3d3d3;
     font: 14px "Roboto", Arial, Helvetica, sans-serif;
     line-height: 1.25;
     font-weight: 400;
@@ -87,7 +87,7 @@ img {
     max-width: 450px;
     margin: 0 auto;
     position: relative;
-    background-color: #000000;
+    background-color: #d3d3d3;
 }
 
 #actions {
