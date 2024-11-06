@@ -77,23 +77,31 @@
     fetch(`https://collect-file-r2.will-086.workers.dev/?filename=${filename}`)
       .then(response => response.json())
       .then(data => {
-          // Update page content based on JSON data
+          // Populate page elements with JSON data
+
+          // Set the page title and meta description
           document.title = data.serviceName;
           document.querySelector('meta[name="description"]').setAttribute("content", data.serviceDescription);
-          document.querySelector('.cptpl_service').textContent = data.servicePromo;
-          document.querySelector('.cptpl_price').textContent = data.pricePerDay;
+
+          // Populate main service promo text
+          document.querySelector('.cptpl_service').textContent = `${data.servicePromo}`;
+          document.querySelector('.cptpl_price').textContent = `R${data.pricePerDay}`;
+
+          // Set Terms and Conditions link
           document.querySelector('.cptpl_terms').href = data.termsLink;
 
-          // Update images
+          // Set images
           const headerImage = document.getElementById('header-image').querySelector('img');
           headerImage.src = data.headerImage;
+          headerImage.alt = `${data.serviceTitle} Header Image`;
 
-          // Update button colors and links
+          // Update button color and form link
           document.getElementById('subscribe_button').style.backgroundColor = data.buttonColor;
           document.querySelector('form').action = data.subscribeURL;
 
           // Set Exit button link
-          document.querySelector('.cptpl_exit').onclick = () => location.href = data.exitURL;
+          const exitButton = document.querySelector('.cptpl_exit');
+          exitButton.onclick = () => location.href = data.exitURL;
 
           // Optional: Log URLs to confirm they’re being set
           console.log('Subscribe URL:', data.subscribeURL);
@@ -104,6 +112,7 @@
     console.error("Filename not specified in URL");
   }
 </script>
+
 
 
 </body>
