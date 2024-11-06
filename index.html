@@ -67,38 +67,41 @@
         </div>
     </div>
 
-    <script>
-        // Fetch the data from the JSON file and update the page dynamically
-        fetch('./data.json')
-            .then(response => response.json())
-            .then(data => {
-                // Update text content
-                document.title = data.serviceName;
-                document.querySelector('.cptpl_service').textContent = data.servicePromo;
-                document.querySelector('.cptpl_price').textContent = data.pricePerDay;
-                document.querySelector('.cptpl_terms').href = data.termsLink;
-                
-                // Update images
-                const headerImage = document.getElementById('header-image').querySelector('img');
-                headerImage.src = data.headerImage;
+<script>
+  // Get the service parameter from the current page URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const service = urlParams.get("service");
 
-                // Update button color
-                document.getElementById('subscribe_button').style.backgroundColor = data.buttonColor;
+  if (service) {
+    // Fetch JSON data from the Worker with the service parameter
+    fetch(`https://collect-file-r2.will-086.workers.dev/?service=${service}`)
+      .then(response => response.json())
+      .then(data => {
+          // Update the page content with JSON data
+          document.title = data.serviceName;
+          document.querySelector('.cptpl_service').textContent = data.servicePromo;
+          document.querySelector('.cptpl_price').textContent = data.pricePerDay;
+          document.querySelector('.cptpl_terms').href = data.termsLink;
 
-                // Set Subscribe button link
-                const subscribeForm = document.querySelector('form');
-                subscribeForm.action = data.subscribeURL;
+          // Update images and styling
+          const headerImage = document.getElementById('header-image').querySelector('img');
+          headerImage.src = data.headerImage;
 
-                // Set Exit button link
-                const exitButton = document.querySelector('.cptpl_exit');
-                exitButton.onclick = () => location.href = data.exitURL;
+          document.getElementById('subscribe_button').style.backgroundColor = data.buttonColor;
 
-                // Optional: Log URLs to confirm they’re being set
-                console.log('Subscribe URL:', subscribeForm.action);
-                console.log('Exit URL:', exitButton.onclick);
-            })
-            .catch(error => console.error('Error fetching JSON data:', error));
-    </script>
+          // Set Subscribe and Exit button links
+          const subscribeForm = document.querySelector('form');
+          subscribeForm.action = data.subscribeURL;
+
+          const exitButton = document.querySelector('.cptpl_exit');
+          exitButton.onclick = () => location.href = data.exitURL;
+      })
+      .catch(error => console.error('Error fetching JSON data:', error));
+  } else {
+    console.error("Service not specified in URL");
+  }
+</script>
+
 </body>
 </html>
 
